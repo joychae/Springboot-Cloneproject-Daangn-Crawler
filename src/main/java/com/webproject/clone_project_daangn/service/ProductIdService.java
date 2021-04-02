@@ -44,7 +44,7 @@ public class ProductIdService {
     public void make_detail(List<ProductId> product_list) throws IOException {
 
         for(int i = 0; 1>i ; i++){
-            List<String> img_list = new ArrayList<>();
+           String imgs = "";
 
 
             Document doc2 = Jsoup.connect(Detail_DaangnUrl+product_list.get(i).getProductId()).get();
@@ -53,10 +53,7 @@ public class ProductIdService {
 
             for(Element img_text: img_container){
                 String img_src = img_text.attr("data-lazy");
-                img_list.add(img_src);
-            }
-            for(int j = 0; j<img_list.size();j++){
-                System.out.println(img_list.get(j));
+                imgs = imgs + " 기준 " + img_src;
             }
 
 //            Elements contents2 = doc2.select("#content");
@@ -76,7 +73,7 @@ public class ProductIdService {
             String like = contents6[1].trim();
             String view = contents6[2].trim();
 
-            Product product = new Product(nickname, region, title, category, createdAt, price, chat, like, view);
+            Product product = new Product(imgs,contents,nickname, region, title, category, createdAt, price, chat, like, view);
             productRepository.save(product);
 
 //            System.out.println(contents3.select("#nickname").text()); // nickname

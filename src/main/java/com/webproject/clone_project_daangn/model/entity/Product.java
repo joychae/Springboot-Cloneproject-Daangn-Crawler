@@ -3,8 +3,11 @@ package com.webproject.clone_project_daangn.model.entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Columns;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "PRODUCT")
@@ -18,8 +21,8 @@ public class Product {
     @Column(name = "ID")
     private Long id;
 
-    @Column
-    private String img;
+    @Column(length = 3000000)
+    private String imgs;
     @Column
     private String nickname;
     @Column
@@ -32,7 +35,7 @@ public class Product {
     private String createdAt;
     @Column
     private String price;
-    @Column
+    @Column(length = 20000)
     private String contents;
     @Column
     private String chat;
@@ -42,8 +45,9 @@ public class Product {
     private String view;
 
 
-    public Product(String nickname, String region, String title, String category, String createdAt, String price, String chat, String like, String view) {
-
+    public Product(String imgs ,String contents,String nickname, String region, String title, String category, String createdAt, String price, String chat, String like, String view) {
+        this.imgs = imgs;
+        this.contents= contents;
         this.nickname = nickname;
         this.region = region;
         this.title = title;

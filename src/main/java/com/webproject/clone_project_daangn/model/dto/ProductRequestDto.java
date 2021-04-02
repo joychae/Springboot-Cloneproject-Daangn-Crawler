@@ -1,20 +1,13 @@
-package com.webproject.clone_project_daangn.utils;
-
+package com.webproject.clone_project_daangn.model.dto;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.springframework.stereotype.Service;
-
-import javax.annotation.PostConstruct;
-import java.io.IOException;
 
 @ToString
 @Builder
 @Getter
-public class Crolling {
+public class ProductRequestDto {
 
     private Long id;
 

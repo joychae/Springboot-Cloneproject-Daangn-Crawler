@@ -18,11 +18,11 @@ public class CrollingService {
     public void getKoreaCovidDatas() throws IOException {
 
         Document doc = Jsoup.connect(DaangnUrl).get();
-        Elements contents = doc.select("section");
+        Elements contents = doc.select("article");
         for (Element content : contents) {
-            Elements tdContents = content.select("article");
-
-            String title = tdContents.select("a").attr("data-event-label");
+            String title = content.select("a").attr("data-event-label");
+            System.out.println(title);
+            System.out.println("=====");
 
         }
 

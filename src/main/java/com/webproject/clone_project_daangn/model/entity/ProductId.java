@@ -1,11 +1,13 @@
 package com.webproject.clone_project_daangn.model.entity;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import javax.persistence.*;
 
 @Entity
+@Getter
 @NoArgsConstructor
 public class ProductId {
 

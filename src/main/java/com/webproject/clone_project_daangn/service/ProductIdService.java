@@ -1,7 +1,9 @@
 package com.webproject.clone_project_daangn.service;
 
+import com.webproject.clone_project_daangn.model.entity.Product;
 import com.webproject.clone_project_daangn.model.entity.ProductId;
 import com.webproject.clone_project_daangn.repository.ProductIdRepository;
+import com.webproject.clone_project_daangn.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -20,6 +22,7 @@ import java.util.List;
 public class ProductIdService {
 
     private final ProductIdRepository productIdRepository;
+    private final ProductRepository productRepository;
 
     private static String DaangnUrl = "https://www.daangn.com/region/%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C/%EA%B0%95%EB%82%A8%EA%B5%AC";
     private static String Detail_DaangnUrl = "https://www.daangn.com/articles/";
@@ -55,6 +58,38 @@ public class ProductIdService {
             for(int j = 0; j<img_list.size();j++){
                 System.out.println(img_list.get(j));
             }
+
+//            Elements contents2 = doc2.select("#content");
+            Elements contents3 = contents2.select("section");
+            String contents4 = contents3.select("p").get(0).text();
+            String contents5 = contents3.select("#article-counts").text();
+            String [] contents6 = contents5.split("∙");
+
+            String nickname = contents3.select("#nickname").text();
+            String region = contents3.select("#region-name").text();
+            String title = contents3.select("h1").text();
+            String category = contents4.substring(0,contents4.indexOf("∙")).trim();
+            String createdAt = contents4.substring(contents4.indexOf("∙")+1).trim();
+            String price = contents3.select("#article-price").text();
+            String contents = contents3.select("#article-detail > p").text();
+            String chat = contents6[0].trim();
+            String like = contents6[1].trim();
+            String view = contents6[2].trim();
+
+            Product product = new Product(nickname, region, title, category, createdAt, price, chat, like, view);
+            productRepository.save(product);
+
+//            System.out.println(contents3.select("#nickname").text()); // nickname
+//            System.out.println(contents3.select("#region-name").text()); //region
+//            System.out.println(contents3.select("h1").text());  // title
+//            System.out.println(contents4.substring(0,contents4.indexOf("∙")).trim());  // category
+//            System.out.println(contents4.substring(contents4.indexOf("∙")+1).trim());  // createdAt
+//            System.out.println(contents3.select("#article-price").text()); // price
+//            System.out.println(contents3.select("#article-detail > p").text()); // contents
+//            System.out.println(contents6[0].trim()); // chat
+//            System.out.println(contents6[1].trim()); // like
+//            System.out.println(contents6[2].trim()); // view
+//            System.out.println("=====");
 
         }
     }

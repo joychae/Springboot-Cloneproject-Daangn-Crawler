@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -32,15 +33,22 @@ public class ProductIdService {
             ProductId gangnamProductId = new ProductId(domain);
             productIdRepository.save(gangnamProductId);
         }
+        String text = "조회 65 . 채팅 54 . 좋아요 87";
+        String[] text2 = text.split("")
         make_detail(productIdRepository.findAll());
     }
 
     public void make_detail(List<ProductId> product_list) throws IOException {
-        for(int i = 0; product_list.size() >i ; i++){
-
+        for(int i = 0; 1>i ; i++){
             Document doc2 = Jsoup.connect(Detail_DaangnUrl+product_list.get(i).getProductId()).get();
-            Elements contents2 = doc2.select("article");
-            System.out.println(contents2);
+            Element contents2 = doc2.select("#content").get(0);
+            Elements img_container = contents2.select("img");
+            ArrayList<String> img_list = new ArrayList<String>();
+            for(Element img_text: img_container){
+                String img_src = img_text.attr("data-lazy");
+                img_list.add(img_src);
+            }
+
         }
     }
 }

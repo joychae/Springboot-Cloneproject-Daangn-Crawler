@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
-public class GangnamProductId {
+public class ProductId {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -18,7 +18,7 @@ public class GangnamProductId {
     @Column (name = "PRODUCT_ID")
     private String productId;
 
-    public GangnamProductId (String productId) {
+    public ProductId(String productId) {
         this.productId = productId;
     }
 

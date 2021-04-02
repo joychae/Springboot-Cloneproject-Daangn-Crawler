@@ -1,7 +1,7 @@
 package com.webproject.clone_project_daangn.service;
 
-import com.webproject.clone_project_daangn.model.entity.GangnamProductId;
-import com.webproject.clone_project_daangn.repository.GangnamProductIdRepository;
+import com.webproject.clone_project_daangn.model.entity.ProductId;
+import com.webproject.clone_project_daangn.repository.ProductIdRepository;
 import lombok.RequiredArgsConstructor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -14,9 +14,9 @@ import java.io.IOException;
 
 @Service
 @RequiredArgsConstructor
-public class GangnamProductIdService {
+public class ProductIdService {
 
-    private final GangnamProductIdRepository gangnamProductIdRepository;
+    private final ProductIdRepository productIdRepository;
 
     private static String DaangnUrl = "https://www.daangn.com/region/%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C/%EA%B0%95%EB%82%A8%EA%B5%AC";
 
@@ -27,10 +27,9 @@ public class GangnamProductIdService {
         Elements contents = doc.select("article");
         for (Element content : contents) {
             String domain = content.select("a").attr("data-event-label");
-            GangnamProductId gangnamProductId = new GangnamProductId(domain);
-            gangnamProductIdRepository.save(gangnamProductId);
-
+            ProductId gangnamProductId = new ProductId(domain);
+            productIdRepository.save(gangnamProductId);
         }
-
     }
+
 }

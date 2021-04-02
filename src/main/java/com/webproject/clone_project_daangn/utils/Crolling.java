@@ -15,15 +15,27 @@ import java.io.IOException;
 @Builder
 @Getter
 public class Crolling {
-    private String title; // 시도명
 
-    private String imgUrl; // 전일대비확진환자증감
+    private String img;
 
-    private int price; // 확진환자수
+    private String nickname;
 
-    private int region; // 사망자수
+    private String region;
 
-    private String like; // 발병률
+    private String title;
 
-    private String chat; // 일일 검사환자 수
+    private String category;
+
+    private String createdAt;
+
+    private String price;
+
+    private String contents;
+
+    private int chat;
+
+    private  int like;
+
+    private int view;
+    
 }

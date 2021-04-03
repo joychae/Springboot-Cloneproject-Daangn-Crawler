@@ -40,4 +40,9 @@ public class ProductController {
     public void PostProduct(@RequestBody ProductRequestDto requestDto){
         productService.createProduct(requestDto);
     }
+
+    @GetMapping("api/search/{query}}")
+    public List<Product> getSearchResults(@PathVariable String query) {
+        return productService.searchProduct(query);
+    }
 }

@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,4 +32,13 @@ public class ProductService {
         Product product = new Product(requestDto);
         productRepository.save(product);
     }
+
+    public List<Product> searchProduct(String keyword) {
+        List<Product> searchlist = new ArrayList<>();
+        searchlist.addAll(productRepository.findByNicknameContaining(keyword));
+        searchlist.addAll(productRepository.findByTitleContaining(keyword));
+        searchlist.addAll(productRepository.findByContentsContaining(keyword));
+        return searchlist;
+    }
+
 }

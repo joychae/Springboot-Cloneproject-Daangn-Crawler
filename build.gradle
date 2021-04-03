@@ -30,6 +30,8 @@ dependencies {
     // Thymeleaf (뷰 템플릿 엔진)
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     compile group: 'org.jsoup', name: 'jsoup', version: '1.11.3'
+    // 스프링 시큐리티
+    implementation 'org.springframework.boot:spring-boot-starter-security'
 
 }
 

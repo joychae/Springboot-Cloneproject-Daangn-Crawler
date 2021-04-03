@@ -1,0 +1,11 @@
+package com.webproject.clone_project_daangn.repository;
+
+
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+
+public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByUsername(String username);
+}

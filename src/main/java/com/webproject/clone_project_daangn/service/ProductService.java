@@ -34,11 +34,8 @@ public class ProductService {
     }
 
     public List<Product> searchProduct(String keyword) {
-        List<Product> searchlist = new ArrayList<>();
-        searchlist.addAll(productRepository.findByNicknameContaining(keyword));
-        searchlist.addAll(productRepository.findByTitleContaining(keyword));
-        searchlist.addAll(productRepository.findByContentsContaining(keyword));
-        return searchlist;
+
+        return productRepository.findByRegionContainingOrNicknameContainingOrTitleContainingOrContentsContaining(keyword);
     }
 
 }

@@ -11,8 +11,7 @@ public class ChatroomService {
 
     private final ChatroomRepository chatroomRepository;
 
-    public Chatroom findById(Long id) {
-        return chatroomRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("찾는 아이디가 없습니다"));
+    public Chatroom findbyId(Long chatroomId) {
+        return chatroomRepository.findById(chatroomId).orElseThrow(() -> new IllegalArgumentException("찾는 아이디가 없습니다"));
     }
-
 }

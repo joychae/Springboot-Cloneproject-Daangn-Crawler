@@ -1,11 +1,10 @@
 package com.webproject.clone_project_daangn.controller;
 
+import com.webproject.clone_project_daangn.model.dto.ProductRequestDto;
 import com.webproject.clone_project_daangn.model.entity.Product;
 import com.webproject.clone_project_daangn.service.ProductService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.lang.model.type.NullType;
 import java.util.Collections;
@@ -37,4 +36,8 @@ public class ProductController {
         return productService.find_hot(want);
     }
 
+    @PostMapping("/api/upload")
+    public void PostProduct(@RequestBody ProductRequestDto requestDto){
+        productService.createProduct(requestDto);
+    }
 }

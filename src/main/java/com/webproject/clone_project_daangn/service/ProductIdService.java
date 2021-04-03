@@ -72,8 +72,9 @@ public class ProductIdService {
             String chat = contents6[0].trim();
             String like = contents6[1].trim();
             String view = contents6[2].trim();
+            String danngnProductId = product_list.get(i).getProductId();
 
-            Product product = new Product(imgs,contents,nickname, region, title, category, createdAt, price, chat, like, view);
+            Product product = new Product(imgs,contents,nickname, region, title, category, createdAt, price, chat, like, view, danngnProductId);
             productRepository.save(product);
 
 //            System.out.println(contents3.select("#nickname").text()); // nickname

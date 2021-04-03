@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.lang.model.type.NullType;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -15,6 +16,17 @@ import java.util.List;
 public class ProductController {
     private final ProductService productService;
 
+    @GetMapping("/api/hot_articles")
+    public List<Product> getPopularProducts() {
+        List<Product> popluarlist =  productService.findAllProduct();
+        Collections.shuffle(popluarlist);
+        return popluarlist;
+    }
+
+    @GetMapping("/api/hot_articles/{id}")
+    public Product getProductDetail(@PathVariable String id) {
+        return productService.findProductDetail(id);
+    }
 
     @GetMapping(value = {"/api/region/{val2}/{val3}", "/api/region/{val2}"})
     public List<Product> find_hot( @PathVariable String val2, @PathVariable(required = false) String val3){

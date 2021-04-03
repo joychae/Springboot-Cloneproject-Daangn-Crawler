@@ -43,9 +43,11 @@ public class Product {
     private String like;
     @Column
     private String view;
+    @Column
+    private String daangnProductId;
 
 
-    public Product(String imgs ,String contents,String nickname, String region, String title, String category, String createdAt, String price, String chat, String like, String view) {
+    public Product(String imgs ,String contents,String nickname, String region, String title, String category, String createdAt, String price, String chat, String like, String view, String daangnProductId) {
         this.imgs = imgs;
         this.contents= contents;
         this.nickname = nickname;
@@ -57,6 +59,7 @@ public class Product {
         this.chat = chat;
         this.like = like;
         this.view = view;
+        this.daangnProductId = daangnProductId;
 
     }
 }

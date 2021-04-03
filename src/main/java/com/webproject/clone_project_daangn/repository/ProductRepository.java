@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
+    Product findByDaangnProductId(String id);
     List<Product> findByRegionContaining(String want);
 }

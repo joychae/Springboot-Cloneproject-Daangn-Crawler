@@ -9,5 +9,6 @@ public class ChatContentsRequestDto {
 
    private Long chatroomId;
    private String writer;
+   private String contents;
 
 }

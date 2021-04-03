@@ -19,9 +19,13 @@ public class ChatContents extends Timestamped {
     @Column(name = "WRITER")
     private String writer;
 
+    @Column(name = "CONTENTS")
+    private String contents;
+
     public ChatContents (ChatContentsRequestDto requestDto, ChatroomService chatroomService) {
         this.chatroom = chatroomService.findbyId(requestDto.getChatroomId());
         this.writer = requestDto.getWriter();
+        this.contents = requestDto.getContents();
     }
 
 }

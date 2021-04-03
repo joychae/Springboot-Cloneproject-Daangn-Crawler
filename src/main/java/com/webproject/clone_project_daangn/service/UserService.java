@@ -26,4 +26,8 @@ public class UserService {
         User user = new User(username, password);
         userRepository.save(user);
     }
+
+    public User findbyId(Long userId) {
+        return userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("찾는 아이디가 없습니다"));
+    }
 }

@@ -43,7 +43,6 @@ public class ProductController {
 
     @GetMapping("api/search/{query}")
     public List<Product> getSearchResults(@PathVariable String query) {
-        System.out.println(query);
         return productService.searchProduct(query);
     }
 }

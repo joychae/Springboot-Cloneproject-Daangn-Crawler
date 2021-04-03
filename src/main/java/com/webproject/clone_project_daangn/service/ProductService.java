@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -34,8 +35,14 @@ public class ProductService {
     }
 
     public List<Product> searchProduct(String keyword) {
+        List<Product> searchlist = new ArrayList<>();
+        searchlist.addAll(productRepository.findByNicknameContaining(keyword));
+        searchlist.addAll(productRepository.findByTitleContaining(keyword));
+        searchlist.addAll(productRepository.findByContentsContaining(keyword));
+        searchlist.addAll(productRepository.findByRegionContaining(keyword));
 
-        return productRepository.findByRegionContainingOrNicknameContainingOrTitleContainingOrContentsContaining(keyword);
+        searchlist = searchlist.parallelStream().distinct().collect(Collectors.toList());
+        return searchlist;
     }
 
 }

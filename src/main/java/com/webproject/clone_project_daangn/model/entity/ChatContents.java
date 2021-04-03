@@ -1,6 +1,8 @@
 package com.webproject.clone_project_daangn.model.entity;
 
 import com.webproject.clone_project_daangn.model.Timestamped;
+import com.webproject.clone_project_daangn.model.dto.ChatContentsRequestDto;
+import com.webproject.clone_project_daangn.service.ChatroomService;
 
 import javax.persistence.*;
 
@@ -16,5 +18,10 @@ public class ChatContents extends Timestamped {
 
     @Column(name = "WRITER")
     private String writer;
+
+    public ChatContents (ChatContentsRequestDto requestDto, ChatroomService chatroomService) {
+        this.chatroom = chatroomService.findbyId(requestDto.getChatroomId());
+        this.writer = requestDto.getWriter();
+    }
 
 }

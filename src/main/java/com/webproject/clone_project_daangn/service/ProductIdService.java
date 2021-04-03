@@ -43,7 +43,7 @@ public class ProductIdService {
 
     public void make_detail(List<ProductId> product_list) throws IOException {
 
-        for(int i = 0; 1>i ; i++){
+        for(int i = 0; 3>i ; i++){
            String imgs = "";
 
 

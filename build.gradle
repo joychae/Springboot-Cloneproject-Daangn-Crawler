@@ -32,6 +32,9 @@ dependencies {
     compile group: 'org.jsoup', name: 'jsoup', version: '1.11.3'
     // 스프링 시큐리티
     implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'io.jsonwebtoken:jjwt-api:0.10.7'
+    runtime 'io.jsonwebtoken:jjwt-impl:0.10.7'
+    runtime 'io.jsonwebtoken:jjwt-jackson:0.10.7'
 
 }
 

@@ -15,9 +15,9 @@ public class Chatroom {
     @Id
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "USER_ID")
-    private User user;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "USER_ID")
+//    private User user;
 
     @Column(name = "SELLER")
     private String seller;
@@ -25,9 +25,8 @@ public class Chatroom {
     @Column(name = "BUYER")
     private String buyer;
 
-    public Chatroom (ChatroomRequestDto requestDto, UserService userService) {
-        this.user = userService.findbyId(requestDto.getUserId());
-        this.seller = user.getUsername();
+    public Chatroom (ChatroomRequestDto requestDto) {
+//        this.seller = user.getUsername();
         this.buyer = requestDto.getBuyer();
     }
 

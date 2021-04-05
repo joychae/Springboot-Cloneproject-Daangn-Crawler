@@ -8,17 +8,16 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@Table(name = "PRODUCT_ID")
 @NoArgsConstructor
 public class ProductId {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "ID")
+    @Column
     private Long id;
 
     @NonNull
-    @Column (name = "PRODUCT_ID")
+    @Column
     private String productId;
 
     public ProductId(String productId) {

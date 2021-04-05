@@ -20,53 +20,53 @@ public class Product {
     private Long id;
 
     @Column(length = 3000000)
-    private String productImgs;
+    private String imgs;
     @Column
     private String nickname;
     @Column
-    private String productRegion;
+    private String region;
     @Column
-    private String productTitle;
+    private String title;
     @Column
-    private String productCategory;
+    private String category;
     @Column
     private String createdAt;
     @Column
-    private String productPrice;
+    private String price;
     @Column(length = 20000)
-    private String productContents;
+    private String contents;
     @Column
-    private String productChat;
-    @Column
-    private String productLike;
-    @Column
-    private String productView;
+    private String chat;
+    @Column (name = "likeNum")
+    private String likeNum;
+    @Column (name = "viewNum")
+    private String viewNum;
     @Column
     private String daangnProductId;
 
 
     public Product(String imgs ,String contents,String nickname, String region, String title, String category, String createdAt, String price, String chat, String like, String view, String daangnProductId) {
-        this.productImgs = imgs;
-        this.productContents = contents;
+        this.imgs = imgs;
+        this.contents= contents;
         this.nickname = nickname;
-        this.productRegion = region;
-        this.productTitle = title;
-        this.productCategory = category;
+        this.region = region;
+        this.title = title;
+        this.category = category;
         this.createdAt = createdAt;
-        this.productPrice = price;
-        this.productChat = chat;
-        this.productLike = like;
-        this.productView = view;
+        this.price = price;
+        this.chat = chat;
+        this.likeNum = like;
+        this.viewNum = view;
         this.daangnProductId = daangnProductId;
 
     }
 
     public Product(ProductRequestDto requestDto){
-        this.productImgs = requestDto.getImg();
-        this.productTitle = requestDto.getTitle();
-        this.productCategory = requestDto.getCategory();
-        this.productPrice = requestDto.getPrice();
-        this.productContents = requestDto.getContents();
+        this.imgs = requestDto.getImg();
+        this.title = requestDto.getTitle();
+        this.category = requestDto.getCategory();
+        this.price = requestDto.getPrice();
+        this.contents = requestDto.getContents();
         this.createdAt =requestDto.getCreatedAt();
     }
 }

@@ -17,7 +17,7 @@ public class User {
 
     @JsonIgnore
     @Id
-    @Column(name = "user_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
@@ -35,7 +35,7 @@ public class User {
     @Column(name = "activated")
     private boolean activated;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "user_authority",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")},

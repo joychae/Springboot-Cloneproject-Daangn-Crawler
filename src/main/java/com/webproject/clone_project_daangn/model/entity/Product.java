@@ -37,9 +37,9 @@ public class Product {
     private String contents;
     @Column
     private String chat;
-    @Column (name = "loveNum")
+    @Column (name = "likeNum")
     private String likeNum;
-    @Column (name = "seeNum")
+    @Column (name = "viewNum")
     private String viewNum;
     @Column
     private String daangnProductId;

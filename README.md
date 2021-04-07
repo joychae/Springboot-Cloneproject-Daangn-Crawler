@@ -70,7 +70,7 @@ com.clone.daangnclone_Crawler
 
 기능의 자세한 로직
 ---------
-- ProductID값 추출하기
+### ProductID값 추출하기
 ```
  @PostConstruct
     public void getKoreaCovidDatas() throws IOException {
@@ -90,11 +90,11 @@ com.clone.daangnclone_Crawler
     }
 ```
 
->- 추출하고자 하는 지역을 배열안에 넣어준다.
->- 반복문이 돌면서 DaangnUrl뒤에 상세 주소로 배열의 요소를 넣어준다.
->- 완성된 want 변수를 기준으로 크롤링을 시작하여 ProductId값을 추출한다.
+- 추출하고자 하는 지역을 배열안에 넣어준다.
+- 반복문이 돌면서 DaangnUrl뒤에 상세 주소로 배열의 요소를 넣어준다.
+- 완성된 want 변수를 기준으로 크롤링을 시작하여 ProductId값을 추출한다.
 
-- Product 값 추출하기
+### Product 값 추출하기
 ```
  public void make_detail(List<ProductId> product_list) throws IOException {
 
@@ -136,5 +136,5 @@ com.clone.daangnclone_Crawler
     }
 ```
 
->- 불러온 ProductID 길이만큼 반복문 실행(모든 상품의 상세정보 크롤링)
->- 그롤링한 상세정보를 Product DB에 저장한다.
+- 불러온 ProductID 길이만큼 반복문 실행(모든 상품의 상세정보 크롤링)
+- 그롤링한 상세정보를 Product DB에 저장한다.

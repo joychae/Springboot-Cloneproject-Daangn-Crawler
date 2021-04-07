@@ -24,18 +24,21 @@ public class ProductIdService {
     private final ProductIdRepository productIdRepository;
     private final ProductRepository productRepository;
 
-    private static String DaangnUrl = "https://www.daangn.com/region/%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C/%EA%B0%95%EB%B6%81%EA%B5%AC";
+    private static String DaangnUrl = "https://www.daangn.com/region/서울특별시/";
     private static String Detail_DaangnUrl = "https://www.daangn.com/articles/";
 
     @PostConstruct
     public void getKoreaCovidDatas() throws IOException {
-
-        Document doc = Jsoup.connect(DaangnUrl).get();
-        Elements contents = doc.select("article");
-        for (Element content : contents) {
-            String domain = content.select("a").attr("data-event-label");
-            ProductId gangnamProductId = new ProductId(domain);
-            productIdRepository.save(gangnamProductId);
+        String [] regions= {"강남구","강북구","노원구","동대문구","동작구","마포구","송파구","용산구"};
+        for(int i =0; i<regions.length ; i++){
+            String want = DaangnUrl + regions[i];
+            Document doc = Jsoup.connect(want).get();
+            Elements contents = doc.select("article");
+            for (Element content : contents) {
+                String domain = content.select("a").attr("data-event-label");
+                ProductId gangnamProductId = new ProductId(domain);
+                productIdRepository.save(gangnamProductId);
+            }
         }
 
         make_detail(productIdRepository.findAll());
@@ -76,18 +79,6 @@ public class ProductIdService {
 
             Product product = new Product(imgs,contents,nickname, region, title, category, createdAt, price, chat, like, view, danngnProductId);
             productRepository.save(product);
-
-//            System.out.println(contents3.select("#nickname").text()); // nickname
-//            System.out.println(contents3.select("#region-name").text()); //region
-//            System.out.println(contents3.select("h1").text());  // title
-//            System.out.println(contents4.substring(0,contents4.indexOf("∙")).trim());  // category
-//            System.out.println(contents4.substring(contents4.indexOf("∙")+1).trim());  // createdAt
-//            System.out.println(contents3.select("#article-price").text()); // price
-//            System.out.println(contents3.select("#article-detail > p").text()); // contents
-//            System.out.println(contents6[0].trim()); // chat
-//            System.out.println(contents6[1].trim()); // like
-//            System.out.println(contents6[2].trim()); // view
-//            System.out.println("=====");
 
         }
     }

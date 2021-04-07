@@ -1,6 +1,6 @@
 package com.webproject.clone_project_daangn.model.entity;
 
-import com.webproject.clone_project_daangn.model.dto.ProductRequestDto;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -61,12 +61,4 @@ public class Product {
 
     }
 
-    public Product(ProductRequestDto requestDto){
-        this.imgs = requestDto.getImg();
-        this.title = requestDto.getTitle();
-        this.category = requestDto.getCategory();
-        this.price = requestDto.getPrice();
-        this.contents = requestDto.getContents();
-        this.createdAt =requestDto.getCreatedAt();
-    }
 }

@@ -68,6 +68,9 @@ com.clone.daangnclone_Crawler
 >- 불러온 리스트의 요소들을 매물 상세 페이지 URL에 id 값으로 넣어줌
 >- 넣어준 URL에 접속하여 매물의 상세 정보를 추출
 
+
+</br>
+
 기능의 자세한 로직
 ---------
 ### ProductID값 추출하기

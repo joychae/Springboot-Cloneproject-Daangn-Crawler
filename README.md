@@ -71,14 +71,70 @@ com.clone.daangnclone_Crawler
 기능의 자세한 로직
 ---------
 - ProductID값 추출하기
-![](https://images.velog.io/images/hyundong_kk/post/26fb71aa-4073-4a49-8623-12260690ced9/image.png)
+```
+ @PostConstruct
+    public void getKoreaCovidDatas() throws IOException {
+        String [] regions= {"강남구","강북구","노원구","동대문구","동작구","마포구","송파구","용산구"};
+        for(int i =0; i<regions.length ; i++){
+            String want = DaangnUrl + regions[i];
+            Document doc = Jsoup.connect(want).get();
+            Elements contents = doc.select("article");
+            for (Element content : contents) {
+                String domain = content.select("a").attr("data-event-label");
+                ProductId gangnamProductId = new ProductId(domain);
+                productIdRepository.save(gangnamProductId);
+            }
+        }
+
+        make_detail(productIdRepository.findAll());
+    }
+```
 
 >- 추출하고자 하는 지역을 배열안에 넣어준다.
 >- 반복문이 돌면서 DaangnUrl뒤에 상세 주소로 배열의 요소를 넣어준다.
 >- 완성된 want 변수를 기준으로 크롤링을 시작하여 ProductId값을 추출한다.
 
 - Product 값 추출하기
-![](https://images.velog.io/images/hyundong_kk/post/20d74786-b68e-4bea-83b2-887ebe63b8ef/image.png)
+```
+ public void make_detail(List<ProductId> product_list) throws IOException {
+
+        for(int i = 0; product_list.size()>i ; i++){
+           String imgs = "";
+
+
+            Document doc2 = Jsoup.connect(Detail_DaangnUrl+product_list.get(i).getProductId()).get();
+            Element contents2 = doc2.select("#content").get(0);
+            Elements img_container = contents2.select("img");
+
+            for(Element img_text: img_container){
+                String img_src = img_text.attr("data-lazy");
+                imgs = imgs + " 기준 " + img_src;
+            }
+
+//            Elements contents2 = doc2.select("#content");
+            Elements contents3 = contents2.select("section");
+            String contents4 = contents3.select("p").get(0).text();
+            String contents5 = contents3.select("#article-counts").text();
+            String [] contents6 = contents5.split("∙");
+
+            String nickname = contents3.select("#nickname").text();
+            String region = contents3.select("#region-name").text();
+            String title = contents3.select("h1").text();
+            String category = contents4.substring(0,contents4.indexOf("∙")).trim();
+            String createdAt = contents4.substring(contents4.indexOf("∙")+1).trim();
+            String price = contents3.select("#article-price").text();
+            String contents = contents3.select("#article-detail > p").text();
+            String chat = contents6[0].trim();
+            String like = contents6[1].trim();
+            String view = contents6[2].trim();
+            String danngnProductId = product_list.get(i).getProductId();
+
+            Product product = new Product(imgs,contents,nickname, region, title, category, createdAt, price, chat, like, view, danngnProductId);
+            productRepository.save(product);
+
+        }
+    }
+```
 
 >- 불러온 ProductID 길이만큼 반복문 실행(모든 상품의 상세정보 크롤링)
 >- 그롤링한 상세정보를 Product DB에 저장한다.

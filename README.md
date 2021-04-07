@@ -111,7 +111,7 @@ com.clone.daangnclone_Crawler
                 imgs = imgs + " 기준 " + img_src;
             }
 
-//            Elements contents2 = doc2.select("#content");
+            Elements contents2 = doc2.select("#content");
             Elements contents3 = contents2.select("section");
             String contents4 = contents3.select("p").get(0).text();
             String contents5 = contents3.select("#article-counts").text();
